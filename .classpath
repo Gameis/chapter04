@@ -8,7 +8,6 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="lib" path="lib/aspectjweaver-1.9.7.jar"/>
 	<classpathentry kind="lib" path="lib/commons-logging-1.2.jar"/>
-	<classpathentry kind="lib" path="lib/lombok.jar"/>
 	<classpathentry kind="lib" path="lib/spring-aop-5.3.5.jar"/>
 	<classpathentry kind="lib" path="lib/spring-beans-5.3.5.jar"/>
 	<classpathentry kind="lib" path="lib/spring-context-5.3.5.jar"/>
@@ -20,5 +19,6 @@
 	<classpathentry kind="lib" path="lib/commons-collections4-4.4.jar"/>
 	<classpathentry kind="lib" path="lib/commons-dbcp2-2.8.0.jar"/>
 	<classpathentry kind="lib" path="lib/commons-pool2-2.11.1.jar"/>
+	<classpathentry kind="lib" path="lib/lombok.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

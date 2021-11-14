@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcDaoSupport;
 
@@ -41,10 +42,42 @@ public class UserDAOImpl extends NamedParameterJdbcDaoSupport implements UserDAO
 	@Override
 	public UserDTO getUser(String id) {
 
-		String sql = "select * from usertable where id = " + id;
+		String sql = "select * from usertable where id = " + "'" + id + "'";
+
+		try {
+			return getJdbcTemplate().queryForObject(sql,
+					new BeanPropertyRowMapper<UserDTO>(UserDTO.class));
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
+	}
+
+
+	@Override
+	public void update(UserDTO userDTO) {
+
+		String sql = "update usertable set name = :name, pwd = :pwd where id = :id";
 		
-		return (UserDTO) getJdbcTemplate().query(sql,
-				new BeanPropertyRowMapper<UserDTO>(UserDTO.class));
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("id", userDTO.getId());
+		map.put("name", userDTO.getName());
+		map.put("pwd", userDTO.getPwd());
+		
+		getNamedParameterJdbcTemplate().update(sql, map);
+		
+		System.out.println("수정 완료");
+		
+	}
+
+	@Override
+	public void delete(String id) {
+
+		String sql = "delete usertable where id = " + "'" + id + "'";
+		
+		getJdbcTemplate().update(sql);
+		
+		System.out.println("삭제 완료");
+		
 	}
 
 }

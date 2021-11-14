@@ -55,7 +55,10 @@
 	
 	<bean id="userUpdateService" class="user.service.UserUpdateService">
 		<property name="userDAO" ref="userDAO"/>
-		<property name="userDTO" ref="userDTO"/>
+	</bean>
+	
+	<bean id="userDeleteService" class="user.service.UserDeleteService">
+		<property name="userDAO" ref="userDAO"/>
 	</bean>
 	<bean id="userDAO" class="user.dao.UserDAOImpl">
 		<!-- <property name="jdbcTemplate" ref="jdbcTemplate"/> -->
